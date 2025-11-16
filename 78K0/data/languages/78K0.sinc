@@ -2201,7 +2201,7 @@ macro pop16(ret16) {
 # Format: BZ $addr16
 # Description: Conditional Branch
 :BZ "$"jdisp8 is op16_07 = 0b10101101 & jdisp8 {
-	if (PSW[6, 1] == 0) goto jdisp8;
+	if (PSW[6, 1] == 1) goto jdisp8;
 }
 
 
@@ -2210,7 +2210,7 @@ macro pop16(ret16) {
 # Format: BNZ $addr16
 # Description: Conditional Branch
 :BNZ "$"jdisp8 is op16_07 = 0b10111101 & jdisp8 {
-	if (PSW[6, 1] == 1) goto jdisp8;
+	if (PSW[6, 1] == 0) goto jdisp8;
 }
 
 
