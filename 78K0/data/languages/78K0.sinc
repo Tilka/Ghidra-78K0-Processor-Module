@@ -220,6 +220,10 @@ jdisp8_2431: addr is op32_2431_signed [addr = inst_next + op32_2431_signed; ] {
 	export *:1 addr;
 }
 
+callt_addr: addr is op8_51_addr [addr = (op8_51_addr * 2) + 0x40;] {
+	export *:2 addr;
+}
+
 ##############
 ##  Macros  ##
 ##############
@@ -2055,7 +2059,9 @@ macro pop16(ret16) {
 # Format: CALLT [addr5]
 # Description: Subroutine Call (Refer to the Call Table)
 # Addressing Mode: Table Indirect Addressing
-:CALLT [addr5] is op8_67 = 0b11 & op8_51_addr & op8_0 = 0b1 [addr5 = (op8_51_addr * 2) + 0x40;] unimpl
+:CALLT [callt_addr] is op8_67 = 0b11 & callt_addr & op8_0 = 0b1 {
+	call [callt_addr];
+}
 
 
 
