@@ -2222,13 +2222,13 @@ macro pop16(ret16) {
 # Note: Condition added here to prevent PSW instruction overlap.
 :BT saddr24low"."op24_46, "$"jdisp8_1623 is op24_03 = 0b1100 & op24_7 = 0b1 & op24_815 >= 0x20 & op24_815 & op24_46 & jdisp8_1623 & saddr24low {	
 	local mask:1 = (1 << op24_46);
-	local result = saddr24low:1 | mask;
-	if (result == 1) goto jdisp8_1623;
+	local result = saddr24low:1 & mask;
+	if (result != 0) goto jdisp8_1623;
 }
 :BT saddr24high"."op24_46, "$"jdisp8_1623 is op24_03 = 0b1100 & op24_7 = 0b1 & op24_815 < 0x20 & op24_815 != 0x1E & op24_815 & op24_46 & jdisp8_1623 & saddr24high {
 	local mask:1 = (1 << op24_46);
-	local result = saddr24high:1 | mask;
-	if (result == 1) goto jdisp8_1623;
+	local result = saddr24high:1 & mask;
+	if (result != 0) goto jdisp8_1623;
 }
 
 # Instruction: BT
@@ -2238,8 +2238,8 @@ macro pop16(ret16) {
 # Note: Condition added here to prevent PSW instruction overlap.
 :BT sfr32_1623"."op32_1214, "$"jdisp8_2431 is op32_07 = 0b00110001 & op32_811 = 0b0110 & op32_1515 = 0b0 & ((op32_1623 >= 0x00 & op32_1623 <= 0xCF) | (op32_1623 >= 0xE0 & op32_1623 <= 0xFF)) & op32_1623 & op32_1214 & jdisp8_2431 & sfr32_1623 {
 	local mask:1 = (1 << op32_1214);
-	local result = sfr32_1623:1 | mask;
-	if (result == 1) goto jdisp8_2431;
+	local result = sfr32_1623:1 & mask;
+	if (result != 0) goto jdisp8_2431;
 }
 
 # Instruction: BT
@@ -2247,8 +2247,8 @@ macro pop16(ret16) {
 # Description: Conditional Branch
 :BT A"."op24_1214,"$"jdisp8_1623 is op24_07 = 0b00110001 & op24_811 = 0b1110 & op24_1515 = 0b0 & op24_1214 & jdisp8_1623 & A {
 	local mask:1 = (1 << op24_1214);
-	local result = A:1 | mask;
-	if (result == 1) goto jdisp8_1623;
+	local result = A:1 & mask;
+	if (result != 0) goto jdisp8_1623;
 }
 
 # Instruction: BT
@@ -2256,8 +2256,8 @@ macro pop16(ret16) {
 # Description: Conditional Branch
 :BT PSW"."op24_46,"$"jdisp8_1623 is op24_7 = 0b1 & op24_03 = 0b1100 & op24_46 & op24_815 = 0b00011110 & jdisp8_1623 & PSW {
 	local mask:1 = (1 << op24_46);
-	local result = PSW:1 | mask;
-	if (result == 1) goto jdisp8_1623;
+	local result = PSW:1 & mask;
+	if (result != 0) goto jdisp8_1623;
 }
 
 # Instruction: BT
@@ -2265,8 +2265,8 @@ macro pop16(ret16) {
 # Description: Conditional Branch
 :BT [HL]"."op24_1214,"$"jdisp8_1623 is op24_07 = 0b00110001 & op24_811 = 0b0110 & op24_1515 = 0b1 & op24_1214 & jdisp8_1623 & HL {
 	local mask:1 = (1 << op24_1214);
-	local result = *:1 HL | mask;
-	if (result == 1) goto jdisp8_1623;
+	local result = *:1 HL & mask;
+	if (result != 0) goto jdisp8_1623;
 }
 
 
